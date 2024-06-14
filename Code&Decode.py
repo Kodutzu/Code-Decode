@@ -45,18 +45,13 @@ def main():
             Decryptor(EncryptedKey, Encryptedcode)
             print()
        
-
 def randomword(length):
    letters = string.ascii_lowercase
    return ''.join(random.choice(letters) for i in range(length))
-
-def EncryptVault(newkey, encryptedcode):
-
-    
-    global Vault
-    Vault[newkey] = encryptedcode
-
+   
 def Encryptor(personalkey, code):
+
+    global Vault
 
     if(len(code) >= 3 or code.isspace() != True):
         
@@ -66,10 +61,10 @@ def Encryptor(personalkey, code):
     else:
         FinalEncryption = code[::-1]
 
-    EncryptVault(personalkey, FinalEncryption)
+    
+    Vault[personalkey] = code
     return FinalEncryption
   
-    
 def Decryptor(key, encryptedcode):
 
     if key in Vault:
